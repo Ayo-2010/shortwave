@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shortwave — A Listening Room</title>
+<meta name="description" content="A 1970s shortwave radio with analogue tuning, station scanning, presets, a signal meter and generated static.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="room">
+  <main class="radio">
+    <div class="cabinet-top">
+      <div class="nameplate">
+        <span class="maker">Northstar</span>
+        <h1>Shortwave</h1>
+        <small>Model SR-74 · AM / SW receiver</small>
+      </div>
+      <div class="top-controls">
+        <span id="clock" class="clock">00:00:00</span>
+        <button id="power" class="power-switch" type="button" aria-pressed="false"><span></span>Power</button>
+      </div>
+    </div>
+
+    <div class="cabinet">
+      <section class="speaker" aria-label="Speaker">
+        <div class="grille"></div>
+        <div class="speaker-badge">
+          <span>High fidelity</span>
+          <strong>NS</strong>
+          <small>Two way · 8 ohm</small>
+        </div>
+      </section>
+
+      <section class="faceplate">
+        <div class="dial">
+          <div class="dial-head">
+            <span>Kilocycles</span>
+            <span id="band-label">Broadcast band</span>
+            <span>AM / SW</span>
+          </div>
+          <div id="band-marks" class="band-marks"></div>
+          <div class="needle-track">
+            <div id="needle" class="needle"></div>
+          </div>
+          <div class="dial-readout">
+            <strong id="frequency">620</strong>
+            <span>kHz</span>
+          </div>
+          <div class="dial-station">
+            <strong id="station-name">Voice of the Coast</strong>
+            <span id="station-meta">Portland · 50 kW · English</span>
+          </div>
+          <div class="dial-foot">
+            <span>530</span>
+            <span>1600</span>
+          </div>
+        </div>
+
+        <div class="instrument-row">
+          <div class="meter-block">
+            <span>Signal</span>
+            <div id="signal-bars" class="signal-bars"></div>
+            <strong id="signal-label">84%</strong>
+          </div>
+          <div class="meter-block">
+            <span>Reception</span>
+            <p id="reception-label">Clear · slight fade</p>
+          </div>
+          <div class="lamp-block">
+            <span class="lamp" id="stereo-lamp"></span>
+            <small id="power-label">Standby</small>
+          </div>
+        </div>
+
+        <div class="tuner-row">
+          <label class="tuning-control">
+            <span>Tuning</span>
+            <input id="tune" type="range" min="530" max="1600" step="1" value="620" aria-label="Tune the radio">
+          </label>
+          <button id="scan" class="scan-button" type="button">Scan next</button>
+        </div>
+
+        <div class="lower-controls">
+          <div class="knob-wrap">
+            <span>Volume</span>
+            <input id="volume" type="range" min="0" max="100" step="1" value="34" aria-label="Volume">
+            <strong id="volume-label">34</strong>
+          </div>
+          <div class="preset-block">
+            <div class="preset-head">
+              <span>Presets</span>
+              <button id="store" class="store-button" type="button">Store</button>
+            </div>
+            <div id="presets" class="presets"></div>
+          </div>
+          <button id="log-button" class="log-button" type="button">Log reception</button>
+        </div>
+      </section>
+    </div>
+
+    <div class="paper-deck">
+      <section class="station-guide">
+        <div class="paper-head">
+          <div>
+            <span>Tonight on the dial</span>
+            <h2>Station guide</h2>
+          </div>
+          <span id="guide-count">8 stations</span>
+        </div>
+        <div id="station-list" class="station-list"></div>
+      </section>
+
+      <section class="schedule-card">
+        <div class="paper-head">
+          <div>
+            <span>Current frequency</span>
+            <h2 id="schedule-station">Voice of the Coast</h2>
+          </div>
+          <span id="schedule-frequency">620 kHz</span>
+        </div>
+        <div id="schedule" class="schedule"></div>
+      </section>
+
+      <section class="log-card">
+        <div class="paper-head">
+          <div>
+            <span>Reception book</span>
+            <h2>Recent logs</h2>
+          </div>
+          <button id="clear-log" class="clear-log" type="button">Clear</button>
+        </div>
+        <ol id="reception-log" class="reception-log"></ol>
+      </section>
+    </div>
+  </main>
+  <p class="room-note">Best received after dark. Keep the aerial away from the lamp.</p>
+</div>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script src="app.js"></script>
+</body>
+</html>
